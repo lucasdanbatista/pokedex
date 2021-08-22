@@ -16,5 +16,8 @@ class PokemonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pokemon)
         binding.viewModel = viewModel
+        viewModel.pokemon.observe(this) {
+            binding.textView.text = it?.name
+        }
     }
 }

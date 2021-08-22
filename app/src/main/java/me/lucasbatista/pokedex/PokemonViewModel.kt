@@ -1,12 +1,19 @@
 package me.lucasbatista.pokedex
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class PokemonViewModel @Inject constructor() : ViewModel() {
-    private val model = Pokemon(1, "Pikachu") //TODO: Remove mock
-    val name = MutableLiveData(model.name)
+class PokemonViewModel @Inject constructor(private val repository: PokemonRepository) : ViewModel() {
+    val pokemon = repository.find(1).asLiveData()
+
+    //TODO: Remove mock
+    fun create() = CoroutineScope(IO).launch {
+        repository.create(Pokemon(1, "Pikachu"))
+    }
 }
