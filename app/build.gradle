@@ -40,10 +40,13 @@ android {
 
 dependencies {
     def lifecycle_version = '2.3.1'
-    def room_version = "2.3.0"
+    def room_version = '2.3.0'
+    def retrofit_version = '2.9.0'
 
     kapt "androidx.room:room-compiler:$room_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"

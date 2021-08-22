@@ -3,6 +3,7 @@ package me.lucasbatista.pokedex
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -11,5 +12,8 @@ interface PokemonDao {
     fun find(id: Int): Flow<Pokemon?>
 
     @Insert
-    fun create(pokemon: Pokemon)
+    fun insert(pokemon: Pokemon)
+
+    @Update
+    fun update(pokemon: Pokemon)
 }
