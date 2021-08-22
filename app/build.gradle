@@ -9,6 +9,10 @@ android {
     compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
+    buildFeatures {
+        dataBinding true
+    }
+
     defaultConfig {
         applicationId "me.lucasbatista.pokedex"
         minSdkVersion 22
