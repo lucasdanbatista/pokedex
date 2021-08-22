@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex
+package me.lucasbatista.pokedex.pokemon
 
 import retrofit2.http.GET
 import retrofit2.http.Path

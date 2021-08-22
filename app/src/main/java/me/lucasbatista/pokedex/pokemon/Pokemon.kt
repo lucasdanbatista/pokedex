@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex
+package me.lucasbatista.pokedex.pokemon
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

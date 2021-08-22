@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex
+package me.lucasbatista.pokedex.pokemon
 
 import androidx.lifecycle.asLiveData
 import kotlinx.coroutines.CoroutineScope

@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex
+package me.lucasbatista.pokedex.pokemon
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData

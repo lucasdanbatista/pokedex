@@ -1,10 +1,11 @@
-package me.lucasbatista.pokedex
+package me.lucasbatista.pokedex.pokemon
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dagger.hilt.android.AndroidEntryPoint
+import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.databinding.ActivityPokemonBinding
 
 @AndroidEntryPoint
