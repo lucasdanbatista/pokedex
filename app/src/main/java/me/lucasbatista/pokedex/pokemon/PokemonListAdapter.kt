@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import me.lucasbatista.pokedex.databinding.ListItemPokemonBinding
 
 class PokemonListAdapter : ListAdapter<Pokemon, PokemonListAdapter.ViewHolder>(DiffCallback()) {
@@ -19,6 +20,8 @@ class PokemonListAdapter : ListAdapter<Pokemon, PokemonListAdapter.ViewHolder>(D
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             pokemon = getItem(position)
+            Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+                .into(imageView)
             executePendingBindings()
         }
     }
