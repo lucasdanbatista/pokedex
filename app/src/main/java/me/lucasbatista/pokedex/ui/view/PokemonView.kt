@@ -63,11 +63,18 @@ fun PokemonView() {
                                         start = 8.dp
                                     ),
                                 content = {
-                                    Column {
-                                        PokemonTypeLabel(PokemonType.GRASS)
-                                        PokemonTypeLabel(PokemonType.FIRE)
-                                        PokemonTypeLabel(PokemonType.ELECTRIC)
-                                    }
+                                    Column(
+                                        modifier = Modifier.padding(
+                                            top = 24.dp,
+                                            bottom = 16.dp,
+                                            end = 16.dp,
+                                            start = 16.dp
+                                        ),
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        content = {
+                                            PokemonTypeLabel(PokemonType.GRASS)
+                                        }
+                                    )
                                 },
                             )
                         }
