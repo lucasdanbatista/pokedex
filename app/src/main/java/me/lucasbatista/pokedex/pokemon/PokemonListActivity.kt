@@ -5,11 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import dagger.hilt.android.AndroidEntryPoint
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.databinding.ActivityPokemonListBinding
 
-@AndroidEntryPoint
 class PokemonListActivity : AppCompatActivity() {
     private val viewModel: PokemonListViewModel by viewModels()
     private lateinit var binding: ActivityPokemonListBinding
