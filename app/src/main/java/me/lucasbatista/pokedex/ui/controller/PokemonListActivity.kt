@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.ui.activity
+package me.lucasbatista.pokedex.ui.controller
 
 import android.os.Bundle
 import android.view.LayoutInflater
