@@ -17,8 +17,6 @@ class PokemonListActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_pokemon_list)
         binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.recyclerView.adapter = PokemonListAdapter()
-        viewModel.pokemons.observe(this) {
-            (binding.recyclerView.adapter as PokemonListAdapter).submitList(it)
-        }
+        viewModel.pokemons.observe(this) { (binding.recyclerView.adapter as PokemonListAdapter).submitList(it) }
     }
 }

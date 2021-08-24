@@ -6,7 +6,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class PokemonRepository @Inject constructor(private val webService: PokemonWebService, private val dao: PokemonDao) {
+class PokemonRepository @Inject constructor(
+    private val webService: PokemonWebService,
+    private val dao: PokemonDao
+) {
     fun findAll(): Flow<List<Pokemon>> {
         CoroutineScope(IO).launch {
             val data = webService.findAll(100)

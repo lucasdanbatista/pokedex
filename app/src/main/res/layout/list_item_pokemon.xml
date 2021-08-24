@@ -1,46 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <variable name="pokemon" type="me.lucasbatista.pokedex.pokemon.Pokemon"/>
+
+        <variable
+            name="pokemon"
+            type="me.lucasbatista.pokedex.pokemon.Pokemon" />
     </data>
-    <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="wrap_content" android:id="@+id/linearLayout">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <androidx.cardview.widget.CardView
-                android:foreground="@drawable/border_card"
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                card_view:cardCornerRadius="16dp"
-                android:layout_margin="4dp">
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_margin="4dp"
+            android:foreground="@drawable/border_card"
+            card_view:cardCornerRadius="16dp">
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
                 <ImageView
-                        android:layout_width="56dp"
-                        android:layout_height="56dp"
-                        card_view:srcCompat="@drawable/pokemon_bulbasaur"
-                        card_view:layout_constraintStart_toStartOf="parent"
-                        card_view:layout_constraintEnd_toEndOf="parent"
-                        card_view:layout_constraintTop_toTopOf="parent"
-                        card_view:layout_constraintBottom_toTopOf="@+id/textView"
-                        android:id="@+id/imageView"/>
-                <View android:layout_width="match_parent"
-                      android:layout_height="1dp"
-                      android:background="@color/grass"
-                      card_view:layout_constraintBottom_toTopOf="@+id/textView"
-                      card_view:layout_constraintTop_toBottomOf="@+id/imageView"/>
-                <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:textColor="@color/grass"
-                          android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                          android:text="@{pokemon.name}"
-                          tools:text="Name"
-                          card_view:layout_constraintStart_toStartOf="parent"
-                          android:id="@+id/textView"
-                          card_view:layout_constraintBottom_toBottomOf="parent"
-                          card_view:layout_constraintEnd_toEndOf="parent"
-                          android:layout_marginBottom="8dp"/>
+                    android:id="@+id/imageView"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    card_view:layout_constraintBottom_toTopOf="@+id/textView"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    card_view:srcCompat="@drawable/pokemon_bulbasaur" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grass"
+                    card_view:layout_constraintBottom_toTopOf="@+id/textView"
+                    card_view:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@{pokemon.name}"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:textColor="@color/grass"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    tools:text="Name" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

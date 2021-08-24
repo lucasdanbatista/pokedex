@@ -20,7 +20,8 @@ class PokemonListAdapter : ListAdapter<Pokemon, PokemonListAdapter.ViewHolder>(D
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder.binding) {
             pokemon = getItem(position)
-            Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+            Picasso.get()
+                .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
                 .into(imageView)
             executePendingBindings()
         }
