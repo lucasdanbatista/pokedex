@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.module
+package me.lucasbatista.pokedex.di
 
 import dagger.Module
 import dagger.Provides

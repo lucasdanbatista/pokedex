@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.module
+package me.lucasbatista.pokedex.di
 
 import android.app.Application
 import androidx.room.Room
