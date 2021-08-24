@@ -26,47 +26,64 @@ enum class PokemonType {
 @Composable
 fun PokemonView() {
     Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .background(colorResource(R.color.grass))
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         content = {
-            Column(
-                modifier = Modifier.fillMaxSize(),
+            Box(
+                modifier = Modifier
+                    .background(colorResource(R.color.grass))
+                    .fillMaxSize(),
                 content = {
-                    Box(
-                        contentAlignment = Alignment.TopEnd,
-                        modifier = Modifier.fillMaxWidth(),
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
                         content = {
-                            Image(
-                                painter = painterResource(R.drawable.ic_pokeball),
-                                alpha = 0.1F,
-                                colorFilter = ColorFilter.tint(Color.White),
-                                contentDescription = "",
+                            Box(
+                                contentAlignment = Alignment.TopEnd,
+                                modifier = Modifier.fillMaxWidth(),
+                                content = {
+                                    Image(
+                                        painter = painterResource(R.drawable.ic_pokeball),
+                                        alpha = 0.1F,
+                                        colorFilter = ColorFilter.tint(Color.White),
+                                        contentDescription = "",
+                                        modifier = Modifier
+                                            .size(200.dp)
+                                            .padding(16.dp)
+                                    )
+                                }
+                            )
+                            Card(
+                                backgroundColor = Color.White,
+                                shape = RoundedCornerShape(8.dp),
+                                elevation = 0.dp,
                                 modifier = Modifier
-                                    .size(200.dp)
-                                    .padding(16.dp)
+                                    .fillMaxSize()
+                                    .padding(
+                                        bottom = 8.dp,
+                                        end = 8.dp,
+                                        start = 8.dp
+                                    ),
+                                content = {
+                                    Column {
+                                        PokemonTypeLabel(PokemonType.GRASS)
+                                        PokemonTypeLabel(PokemonType.FIRE)
+                                        PokemonTypeLabel(PokemonType.ELECTRIC)
+                                    }
+                                },
                             )
                         }
                     )
-                    Card(
-                        backgroundColor = Color.White,
-                        shape = RoundedCornerShape(8.dp),
-                        elevation = 0.dp,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(
-                                bottom = 8.dp,
-                                end = 8.dp,
-                                start = 8.dp
-                            ),
-                        content = {
-                            Column {
-                                PokemonTypeLabel(PokemonType.GRASS)
-                                PokemonTypeLabel(PokemonType.FIRE)
-                                PokemonTypeLabel(PokemonType.ELECTRIC)
-                            }
-                        },
+                }
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(top = 40.dp),
+                contentAlignment = Alignment.TopCenter,
+                content = {
+                    Image(
+                        painter = painterResource(R.drawable.pokemon_bulbasaur),
+                        contentDescription = "",
+                        modifier = Modifier.size(200.dp)
                     )
                 }
             )
