@@ -1,9 +1,10 @@
-package me.lucasbatista.pokedex.pokemon
+package me.lucasbatista.pokedex.persistence
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import me.lucasbatista.pokedex.network.PokemonWebService
 import javax.inject.Inject
 
 class PokemonRepository @Inject constructor(

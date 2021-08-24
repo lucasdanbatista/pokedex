@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import me.lucasbatista.pokedex.PokedexDatabase
-import me.lucasbatista.pokedex.pokemon.PokemonDao
+import me.lucasbatista.pokedex.persistence.PokedexDatabase
+import me.lucasbatista.pokedex.persistence.PokemonDao
 import javax.inject.Singleton
 
 @Module

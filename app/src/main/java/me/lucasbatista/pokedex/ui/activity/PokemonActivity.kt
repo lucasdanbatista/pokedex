@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.pokemon
+package me.lucasbatista.pokedex.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

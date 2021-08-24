@@ -7,7 +7,7 @@
 
         <variable
             name="pokemon"
-            type="me.lucasbatista.pokedex.pokemon.Pokemon" />
+            type="me.lucasbatista.pokedex.persistence.Pokemon" />
     </data>
 
     <LinearLayout

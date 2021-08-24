@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.pokemon
+package me.lucasbatista.pokedex.persistence
 
 import androidx.room.Dao
 import androidx.room.Insert

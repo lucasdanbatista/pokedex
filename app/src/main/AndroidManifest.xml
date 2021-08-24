@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pokedex">
-        <activity android:name=".pokemon.PokemonListActivity" />
+        <activity android:name=".ui.activity.PokemonListActivity" />
         <activity
-            android:name=".pokemon.PokemonActivity"
+            android:name=".ui.activity.PokemonActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

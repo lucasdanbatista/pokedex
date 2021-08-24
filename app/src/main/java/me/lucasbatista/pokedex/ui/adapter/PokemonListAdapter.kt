@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.pokemon
+package me.lucasbatista.pokedex.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import me.lucasbatista.pokedex.databinding.ListItemPokemonBinding
+import me.lucasbatista.pokedex.persistence.Pokemon
 
 class PokemonListAdapter : ListAdapter<Pokemon, PokemonListAdapter.ViewHolder>(DiffCallback()) {
     class ViewHolder(val binding: ListItemPokemonBinding) : RecyclerView.ViewHolder(binding.root)
