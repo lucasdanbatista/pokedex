@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -28,30 +29,45 @@ fun PokemonView() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .background(colorResource(R.color.grass))
-            .fillMaxHeight()
-            .fillMaxWidth(),
+            .fillMaxSize(),
         content = {
             Column(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth(),
+                modifier = Modifier.fillMaxSize(),
                 content = {
                     Box(
                         contentAlignment = Alignment.TopEnd,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
+                        modifier = Modifier.fillMaxWidth(),
                         content = {
                             Image(
                                 painter = painterResource(R.drawable.ic_pokeball),
                                 alpha = 0.1F,
                                 colorFilter = ColorFilter.tint(Color.White),
                                 contentDescription = "",
-                                modifier = Modifier.size(200.dp),
+                                modifier = Modifier
+                                    .size(200.dp)
+                                    .padding(16.dp)
                             )
                         }
                     )
-                    PokemonTypeLabel(PokemonType.ELECTRIC)
+                    Card(
+                        backgroundColor = Color.White,
+                        shape = RoundedCornerShape(8.dp),
+                        elevation = 0.dp,
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(
+                                bottom = 8.dp,
+                                end = 8.dp,
+                                start = 8.dp
+                            ),
+                        content = {
+                            Column {
+                                PokemonTypeLabel(PokemonType.GRASS)
+                                PokemonTypeLabel(PokemonType.FIRE)
+                                PokemonTypeLabel(PokemonType.ELECTRIC)
+                            }
+                        },
+                    )
                 }
             )
         }
