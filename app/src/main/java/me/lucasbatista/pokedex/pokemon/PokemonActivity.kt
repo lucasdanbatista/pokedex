@@ -1,24 +1,17 @@
 package me.lucasbatista.pokedex.pokemon
 
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.material.Text
 import dagger.hilt.android.AndroidEntryPoint
-import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.databinding.ActivityPokemonBinding
 
 @AndroidEntryPoint
-class PokemonActivity : AppCompatActivity() {
-    private val viewModel: PokemonViewModel by viewModels()
-    private lateinit var binding: ActivityPokemonBinding
-
+class PokemonActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_pokemon)
-        binding.viewModel = viewModel
-        viewModel.pokemon.observe(this) {
-            binding.textView.text = it?.name
+        setContent {
+            Text("Hello")
         }
     }
 }
