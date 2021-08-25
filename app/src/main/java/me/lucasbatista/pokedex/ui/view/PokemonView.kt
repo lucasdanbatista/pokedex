@@ -179,6 +179,9 @@ private fun primaryColor(pokemon: Pokemon): Color {
         Specie.GRASS -> colorResource(R.color.grass)
         Specie.FIRE -> colorResource(R.color.fire)
         Specie.ELECTRIC -> colorResource(R.color.electric)
+        Specie.WATER -> colorResource(R.color.water)
+        Specie.GHOST -> colorResource(R.color.ghost)
+        Specie.PSYCHIC -> colorResource(R.color.psychic)
     }
 }
 
@@ -273,24 +276,16 @@ private fun AboutProperty(
 
 @Composable
 private fun Specie(pokemon: Pokemon) {
-    val text: String
-    val color: Color
-    when (pokemon.specie) {
-        Specie.GRASS -> {
-            text = "GRASS"
-            color = colorResource(R.color.grass)
-        }
-        Specie.FIRE -> {
-            text = "FIRE"
-            color = colorResource(R.color.fire)
-        }
-        Specie.ELECTRIC -> {
-            text = "ELECTRIC"
-            color = colorResource(R.color.electric)
-        }
+    val text = when (pokemon.specie) {
+        Specie.GRASS -> "GRASS"
+        Specie.FIRE -> "FIRE"
+        Specie.ELECTRIC -> "ELECTRIC"
+        Specie.WATER -> "WATER"
+        Specie.GHOST -> "GHOST"
+        Specie.PSYCHIC -> "PSYCHIC"
     }
     Surface(
-        color = color,
+        color = primaryColor(pokemon),
         shape = RoundedCornerShape(16.dp),
         content = {
             Text(

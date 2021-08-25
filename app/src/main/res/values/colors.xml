@@ -3,4 +3,7 @@
     <color name="grass">#74CB48</color>
     <color name="fire">#F57D31</color>
     <color name="electric">#F9CF30</color>
+    <color name="water">#6493EB</color>
+    <color name="psychic">#FB5584</color>
+    <color name="ghost">#70559B</color>
 </resources>

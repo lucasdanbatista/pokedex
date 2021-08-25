@@ -20,5 +20,5 @@ data class Pokemon(
 data class Statistic(val title: String, val romId: Int, val percentage: Double)
 
 enum class Specie {
-    GRASS, FIRE, ELECTRIC,
+    GRASS, FIRE, ELECTRIC, GHOST, WATER, PSYCHIC
 }
