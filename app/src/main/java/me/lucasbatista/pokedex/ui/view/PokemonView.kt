@@ -13,14 +13,18 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.persistence.Pokemon
 import me.lucasbatista.pokedex.persistence.Specie
 
+@Preview
 @Composable
-fun PokemonView(pokemon: Pokemon) {
+fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
     val backgroundColor = when (pokemon.specie) {
         Specie.GRASS -> colorResource(R.color.grass)
         Specie.FIRE -> colorResource(R.color.fire)
@@ -154,4 +158,16 @@ private fun PokemonTypeLabel(type: Specie) {
             )
         }
     )
+}
+
+class PokemonPreview : PreviewParameterProvider<Pokemon> {
+    override val values: Sequence<Pokemon>
+        get() = sequenceOf(
+            Pokemon(
+                1,
+                "Bulbasaur",
+                "https://i.ibb.co/d6NJ2L3/pokemon-bulbasaur.png",
+                Specie.GRASS
+            )
+        )
 }
