@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokemonViewModel @Inject constructor(repository: PokemonRepository) : ViewModel() {
-    val pokemon = repository.find(26).asLiveData()
+    val pokemon = repository.findById(2).asLiveData()
 }

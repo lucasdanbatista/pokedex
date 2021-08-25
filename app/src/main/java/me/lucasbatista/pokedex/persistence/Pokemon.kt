@@ -7,5 +7,11 @@ import androidx.room.PrimaryKey
 data class Pokemon(
     @PrimaryKey
     val id: Int,
-    var name: String
+    val name: String,
+    val avatar: String,
+    val specie: Specie
 )
+
+enum class Specie {
+    GRASS, FIRE, ELECTRIC,
+}

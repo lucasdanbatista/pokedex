@@ -7,27 +7,12 @@ import kotlinx.coroutines.launch
 import me.lucasbatista.pokedex.network.PokemonWebService
 import javax.inject.Inject
 
-class PokemonRepository @Inject constructor(
-    private val webService: PokemonWebService,
-    private val dao: PokemonDao
-) {
-    fun findAll(): Flow<List<Pokemon>> {
+class PokemonRepository @Inject constructor(private val webService: PokemonWebService, private val dao: PokemonDao) {
+    fun findById(id: Int): Flow<Pokemon> {
         CoroutineScope(IO).launch {
-            val data = webService.findAll(100)
-            for ((i) in data.results.withIndex()) {
-                save(i + 1)
-            }
+            val pokemon = webService.findById(id)
+            if (dao.exists(pokemon.id)) dao.update(pokemon) else dao.insert(pokemon)
         }
-        return dao.findAll()
-    }
-
-    fun find(id: Int): Flow<Pokemon> {
-        save(id)
-        return dao.find(id)
-    }
-
-    private fun save(id: Int) = CoroutineScope(IO).launch {
-        val pokemon = webService.find(id)
-        if (dao.exists(pokemon.id)) dao.update(pokemon) else dao.insert(pokemon)
+        return dao.findById(id)
     }
 }

@@ -9,10 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface PokemonDao {
     @Query("select * from pokemon where id = :id")
-    fun find(id: Int): Flow<Pokemon>
-
-    @Query("select * from pokemon")
-    fun findAll(): Flow<List<Pokemon>>
+    fun findById(id: Int): Flow<Pokemon>
 
     @Insert
     fun insert(pokemon: Pokemon)

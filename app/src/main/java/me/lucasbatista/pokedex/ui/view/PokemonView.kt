@@ -17,14 +17,13 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import me.lucasbatista.pokedex.R
-
-enum class PokemonType {
-    GRASS, FIRE, ELECTRIC,
-}
+import me.lucasbatista.pokedex.persistence.Pokemon
+import me.lucasbatista.pokedex.persistence.Specie
 
 @Composable
-fun PokemonView() {
+fun PokemonView(pokemon: Pokemon) {
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
@@ -72,7 +71,7 @@ fun PokemonView() {
                                         ),
                                         horizontalAlignment = Alignment.CenterHorizontally,
                                         content = {
-                                            PokemonTypeLabel(PokemonType.GRASS)
+                                            PokemonTypeLabel(pokemon.specie)
                                         }
                                     )
                                 },
@@ -88,7 +87,7 @@ fun PokemonView() {
                 contentAlignment = Alignment.TopCenter,
                 content = {
                     Image(
-                        painter = painterResource(R.drawable.pokemon_bulbasaur),
+                        painter = rememberImagePainter(pokemon.avatar),
                         contentDescription = "",
                         modifier = Modifier.size(200.dp)
                     )
@@ -99,19 +98,19 @@ fun PokemonView() {
 }
 
 @Composable
-private fun PokemonTypeLabel(type: PokemonType) {
+private fun PokemonTypeLabel(type: Specie) {
     val text: String
     val color: Color
     when (type) {
-        PokemonType.GRASS -> {
+        Specie.GRASS -> {
             text = "GRASS"
             color = colorResource(R.color.grass)
         }
-        PokemonType.FIRE -> {
+        Specie.FIRE -> {
             text = "FIRE"
             color = colorResource(R.color.fire)
         }
-        PokemonType.ELECTRIC -> {
+        Specie.ELECTRIC -> {
             text = "ELECTRIC"
             color = colorResource(R.color.electric)
         }
