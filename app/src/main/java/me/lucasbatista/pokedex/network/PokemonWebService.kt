@@ -7,4 +7,7 @@ import retrofit2.http.Path
 interface PokemonWebService {
     @GET("v0/pokemons/{id}")
     suspend fun findById(@Path("id") id: Int): Pokemon
+
+    @GET("v0/pokemons")
+    suspend fun findAll(): List<Pokemon>
 }

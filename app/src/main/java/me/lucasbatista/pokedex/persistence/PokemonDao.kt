@@ -11,6 +11,9 @@ interface PokemonDao {
     @Query("select * from pokemon where id = :id")
     fun findById(id: Int): Flow<Pokemon>
 
+    @Query("select * from pokemon")
+    fun findAll(): Flow<List<Pokemon>>
+
     @Insert
     fun insert(pokemon: Pokemon)
 

@@ -11,8 +11,20 @@ class PokemonRepository @Inject constructor(private val webService: PokemonWebSe
     fun findById(id: Int): Flow<Pokemon> {
         CoroutineScope(IO).launch {
             val pokemon = webService.findById(id)
-            if (dao.exists(pokemon.id)) dao.update(pokemon) else dao.insert(pokemon)
+            save(pokemon)
         }
         return dao.findById(id)
+    }
+
+    fun findAll(): Flow<List<Pokemon>> {
+        CoroutineScope(IO).launch {
+            val pokemons = webService.findAll()
+            pokemons.forEach { save(it) }
+        }
+        return dao.findAll()
+    }
+
+    private fun save(pokemon: Pokemon) {
+        if (dao.exists(pokemon.id)) dao.update(pokemon) else dao.insert(pokemon)
     }
 }
