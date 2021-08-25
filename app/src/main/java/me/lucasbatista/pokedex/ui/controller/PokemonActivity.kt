@@ -18,7 +18,11 @@ class PokemonActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableFullscreen()
-        viewModel.pokemon.observe(this) { setContent { PokemonView(it) } }
+        viewModel.pokemon.observe(this) {
+            if (it != null) {
+                setContent { PokemonView(it) }
+            }
+        }
     }
 
     private fun enableFullscreen() {
