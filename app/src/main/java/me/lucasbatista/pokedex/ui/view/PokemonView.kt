@@ -31,7 +31,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
         content = {
             Box(
                 modifier = Modifier
-                    .background(backgroundColor(pokemon))
+                    .background(primaryColor(pokemon))
                     .fillMaxSize(),
                 content = {
                     Column(
@@ -74,7 +74,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
                                         horizontalAlignment = Alignment.CenterHorizontally,
                                         content = {
                                             Specie(pokemon)
-                                            About(pokemon)
+                                            AboutSection(pokemon)
                                         }
                                     )
                                 },
@@ -124,7 +124,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
 }
 
 @Composable
-private fun backgroundColor(pokemon: Pokemon): Color {
+private fun primaryColor(pokemon: Pokemon): Color {
     return when (pokemon.specie) {
         Specie.GRASS -> colorResource(R.color.grass)
         Specie.FIRE -> colorResource(R.color.fire)
@@ -133,12 +133,12 @@ private fun backgroundColor(pokemon: Pokemon): Color {
 }
 
 @Composable
-private fun About(pokemon: Pokemon) {
+private fun AboutSection(pokemon: Pokemon) {
     Text(
         text = "About",
         style = MaterialTheme.typography.subtitle1,
         fontWeight = FontWeight.Bold,
-        color = backgroundColor(pokemon)
+        color = primaryColor(pokemon)
     )
     Row(
         modifier = Modifier.padding(vertical = 16.dp),
