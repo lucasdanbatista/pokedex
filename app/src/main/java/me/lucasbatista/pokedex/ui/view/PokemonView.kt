@@ -1,5 +1,6 @@
 package me.lucasbatista.pokedex.ui.view
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -25,17 +26,12 @@ import me.lucasbatista.pokedex.persistence.Specie
 @Preview
 @Composable
 fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
-    val backgroundColor = when (pokemon.specie) {
-        Specie.GRASS -> colorResource(R.color.grass)
-        Specie.FIRE -> colorResource(R.color.fire)
-        Specie.ELECTRIC -> colorResource(R.color.electric)
-    }
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
             Box(
                 modifier = Modifier
-                    .background(backgroundColor)
+                    .background(backgroundColor(pokemon))
                     .fillMaxSize(),
                 content = {
                     Column(
@@ -77,7 +73,8 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
                                         ),
                                         horizontalAlignment = Alignment.CenterHorizontally,
                                         content = {
-                                            PokemonTypeLabel(pokemon.specie)
+                                            Specie(pokemon)
+                                            About(pokemon)
                                         }
                                     )
                                 },
@@ -127,10 +124,102 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
 }
 
 @Composable
-private fun PokemonTypeLabel(type: Specie) {
+private fun backgroundColor(pokemon: Pokemon): Color {
+    return when (pokemon.specie) {
+        Specie.GRASS -> colorResource(R.color.grass)
+        Specie.FIRE -> colorResource(R.color.fire)
+        Specie.ELECTRIC -> colorResource(R.color.electric)
+    }
+}
+
+@Composable
+private fun About(pokemon: Pokemon) {
+    Text(
+        text = "About",
+        style = MaterialTheme.typography.subtitle1,
+        fontWeight = FontWeight.Bold,
+        color = backgroundColor(pokemon)
+    )
+    Row(
+        modifier = Modifier.padding(vertical = 16.dp),
+        content = {
+            AboutProperty(
+                drawable = R.drawable.ic_balance,
+                value = "${pokemon.weight} kg",
+                caption = "Weight"
+            )
+            AboutProperty(
+                drawable = R.drawable.ic_ruler,
+                value = "${pokemon.height} m",
+                caption = "Height"
+            )
+            AboutProperty(
+                value = pokemon.totalMoves.toString(),
+                caption = "Moves"
+            )
+        }
+    )
+    Text(
+        text = pokemon.description,
+        style = MaterialTheme.typography.caption
+    )
+}
+
+@Composable
+private fun AboutProperty(
+    @DrawableRes
+    drawable: Int? = null,
+    value: String,
+    caption: String,
+) {
+    Box(
+        modifier = Modifier.padding(horizontal = 8.dp),
+        content = {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                content = {
+                    Box(
+                        modifier = Modifier.defaultMinSize(minHeight = 24.dp),
+                        contentAlignment = Alignment.Center,
+                        content = {
+                            if (drawable != null) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    content = {
+                                        Icon(
+                                            painter = painterResource(drawable),
+                                            contentDescription = ""
+                                        )
+                                        Text(
+                                            text = value,
+                                            style = MaterialTheme.typography.caption,
+                                        )
+                                    }
+                                )
+                            } else {
+                                Text(
+                                    text = value,
+                                    style = MaterialTheme.typography.subtitle1,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                            }
+                        }
+                    )
+                    Text(
+                        text = caption,
+                        style = MaterialTheme.typography.overline,
+                    )
+                }
+            )
+        }
+    )
+}
+
+@Composable
+private fun Specie(pokemon: Pokemon) {
     val text: String
     val color: Color
-    when (type) {
+    when (pokemon.specie) {
         Specie.GRASS -> {
             text = "GRASS"
             color = colorResource(R.color.grass)
@@ -145,7 +234,7 @@ private fun PokemonTypeLabel(type: Specie) {
         }
     }
     Surface(
-        modifier = Modifier.padding(16.dp),
+        modifier = Modifier.padding(vertical = 16.dp),
         color = color,
         shape = RoundedCornerShape(16.dp),
         content = {
@@ -164,10 +253,14 @@ class PokemonPreview : PreviewParameterProvider<Pokemon> {
     override val values: Sequence<Pokemon>
         get() = sequenceOf(
             Pokemon(
-                1,
-                "Bulbasaur",
-                "https://i.ibb.co/d6NJ2L3/pokemon-bulbasaur.png",
-                Specie.GRASS
+                id = 1,
+                name = "Bulbasaur",
+                description = "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
+                avatar = "https://i.ibb.co/d6NJ2L3/pokemon-bulbasaur.png",
+                specie = Specie.GRASS,
+                height = 0.7,
+                weight = 6.9,
+                totalMoves = 7
             )
         )
 }
