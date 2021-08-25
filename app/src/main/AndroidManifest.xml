@@ -10,10 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pokedex">
-        <activity android:name=".ui.controller.PokemonActivity" />
+        android:theme="@style/Theme.Pokedex"
+        android:usesCleartextTraffic="true">    <!-- TODO: Remove after backend SSL install -->
         <activity
-            android:name=".ui.controller.PokemonListActivity"
+            android:name=".ui.controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

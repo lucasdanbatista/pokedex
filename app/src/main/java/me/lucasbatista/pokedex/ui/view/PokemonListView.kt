@@ -6,32 +6,39 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import me.lucasbatista.pokedex.persistence.Pokemon
 
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PokemonListView(pokemons: List<Pokemon>) {
+fun PokemonListView(pokemons: List<Pokemon>, navController: NavController) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(3),
         contentPadding = PaddingValues(16.dp)
     ) {
-        items(pokemons.size) { index -> PokemonCard(pokemons[index]) }
+        items(pokemons.size) { index ->
+            PokemonCard(pokemons[index]) {
+                navController.navigate("/pokemons/${it.id}")
+            }
+        }
     }
 }
 
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
 @Composable
-private fun PokemonCard(pokemon: Pokemon) {
+private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -> Unit)) {
     Card(
         modifier = Modifier
             .defaultMinSize(minHeight = 112.dp)
@@ -39,6 +46,7 @@ private fun PokemonCard(pokemon: Pokemon) {
             .padding(4.dp),
         border = BorderStroke(2.dp, PokemonColor(pokemon)),
         elevation = 0.dp,
+        onClick = { onClickListener(pokemon) },
         content = {
             Column(
                 verticalArrangement = Arrangement.Center,

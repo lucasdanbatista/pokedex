@@ -15,19 +15,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.persistence.Pokemon
 import me.lucasbatista.pokedex.persistence.Specie
 import me.lucasbatista.pokedex.persistence.Statistic
 
-@Preview
+@ExperimentalCoilApi
 @Composable
-fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
+fun PokemonView(pokemon: Pokemon, navController: NavController) {
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
@@ -106,7 +105,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
                 modifier = Modifier.padding(horizontal = 8.dp),
                 content = {
                     IconButton(
-                        onClick = { TODO() },
+                        onClick = { navController.navigateUp() },
                         content = {
                             Icon(
                                 painter = painterResource(R.drawable.ic_arrow_left),
@@ -285,28 +284,4 @@ private fun Specie(pokemon: Pokemon) {
             )
         }
     )
-}
-
-class PokemonPreview : PreviewParameterProvider<Pokemon> {
-    override val values: Sequence<Pokemon>
-        get() = sequenceOf(
-            Pokemon(
-                id = 1,
-                name = "Bulbasaur",
-                description = "There is a plant seed on its back right from the day this Pokémon is born. The seed slowly grows larger.",
-                avatar = "https://i.ibb.co/d6NJ2L3/pokemon-bulbasaur.png",
-                specie = Specie.GRASS,
-                height = 0.7,
-                weight = 6.9,
-                totalMoves = 7,
-                stats = listOf(
-                    Statistic("HP", 45, 0.2),
-                    Statistic("ATK", 49, 0.3),
-                    Statistic("DEF", 49, 0.3),
-                    Statistic("SATK", 65, 0.4),
-                    Statistic("SDEF", 65, 0.4),
-                    Statistic("SPD", 45, 0.2),
-                )
-            )
-        )
 }
