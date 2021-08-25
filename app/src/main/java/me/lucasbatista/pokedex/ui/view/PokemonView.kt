@@ -13,7 +13,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +33,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
         content = {
             Box(
                 modifier = Modifier
-                    .background(primaryColor(pokemon))
+                    .background(PokemonColor(pokemon))
                     .fillMaxSize(),
                 content = {
                     Column(
@@ -150,7 +149,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
             Text(
                 text = stat.title,
                 modifier = Modifier.defaultMinSize(minWidth = 44.dp),
-                color = primaryColor(pokemon),
+                color = PokemonColor(pokemon),
                 style = MaterialTheme.typography.subtitle2,
                 fontWeight = FontWeight.Bold
             )
@@ -165,7 +164,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
                 text = stat.romId.toString(),
             )
             LinearProgressIndicator(
-                color = primaryColor(pokemon),
+                color = PokemonColor(pokemon),
                 backgroundColor = Color.LightGray,
                 progress = stat.percentage.toFloat(),
             )
@@ -173,17 +172,6 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
     )
 }
 
-@Composable
-private fun primaryColor(pokemon: Pokemon): Color {
-    return when (pokemon.specie) {
-        Specie.GRASS -> colorResource(R.color.grass)
-        Specie.FIRE -> colorResource(R.color.fire)
-        Specie.ELECTRIC -> colorResource(R.color.electric)
-        Specie.WATER -> colorResource(R.color.water)
-        Specie.GHOST -> colorResource(R.color.ghost)
-        Specie.PSYCHIC -> colorResource(R.color.psychic)
-    }
-}
 
 @Composable
 private fun SectionTitle(title: String, pokemon: Pokemon) {
@@ -192,7 +180,7 @@ private fun SectionTitle(title: String, pokemon: Pokemon) {
         text = title,
         style = MaterialTheme.typography.subtitle1,
         fontWeight = FontWeight.Bold,
-        color = primaryColor(pokemon)
+        color = PokemonColor(pokemon)
     )
 }
 
@@ -285,7 +273,7 @@ private fun Specie(pokemon: Pokemon) {
         Specie.PSYCHIC -> "PSYCHIC"
     }
     Surface(
-        color = primaryColor(pokemon),
+        color = PokemonColor(pokemon),
         shape = RoundedCornerShape(16.dp),
         content = {
             Text(
