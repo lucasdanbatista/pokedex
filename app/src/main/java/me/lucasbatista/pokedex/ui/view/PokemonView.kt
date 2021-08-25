@@ -24,12 +24,17 @@ import me.lucasbatista.pokedex.persistence.Specie
 
 @Composable
 fun PokemonView(pokemon: Pokemon) {
+    val backgroundColor = when (pokemon.specie) {
+        Specie.GRASS -> colorResource(R.color.grass)
+        Specie.FIRE -> colorResource(R.color.fire)
+        Specie.ELECTRIC -> colorResource(R.color.electric)
+    }
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
             Box(
                 modifier = Modifier
-                    .background(colorResource(R.color.grass))
+                    .background(backgroundColor)
                     .fillMaxSize(),
                 content = {
                     Column(
