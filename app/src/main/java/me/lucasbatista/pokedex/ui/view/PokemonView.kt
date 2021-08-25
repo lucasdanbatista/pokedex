@@ -4,10 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -88,13 +85,36 @@ fun PokemonView(pokemon: Pokemon) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 40.dp),
+                    .padding(top = 68.dp),
                 contentAlignment = Alignment.TopCenter,
                 content = {
                     Image(
                         painter = rememberImagePainter(pokemon.avatar),
                         contentDescription = "",
-                        modifier = Modifier.size(200.dp)
+                        modifier = Modifier.size(172.dp)
+                    )
+                }
+            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(horizontal = 8.dp),
+                content = {
+                    IconButton(
+                        onClick = { TODO() },
+                        content = {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_arrow_left),
+                                tint = Color.White,
+                                contentDescription = "",
+                            )
+                        }
+                    )
+                    Text(
+                        text = pokemon.name,
+                        style = MaterialTheme.typography.h6,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier.padding(16.dp)
                     )
                 }
             )
