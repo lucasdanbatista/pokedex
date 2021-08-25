@@ -22,6 +22,7 @@ import coil.compose.rememberImagePainter
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.persistence.Pokemon
 import me.lucasbatista.pokedex.persistence.Specie
+import me.lucasbatista.pokedex.persistence.Statistic
 
 @Preview
 @Composable
@@ -66,7 +67,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
                                 content = {
                                     Column(
                                         modifier = Modifier.padding(
-                                            top = 24.dp,
+                                            top = 40.dp,
                                             bottom = 16.dp,
                                             end = 16.dp,
                                             start = 16.dp
@@ -75,6 +76,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
                                         content = {
                                             Specie(pokemon)
                                             AboutSection(pokemon)
+                                            StatsSection(pokemon)
                                         }
                                     )
                                 },
@@ -86,7 +88,7 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 68.dp),
+                    .padding(top = 72.dp),
                 contentAlignment = Alignment.TopCenter,
                 content = {
                     Image(
@@ -123,6 +125,50 @@ fun PokemonView(@PreviewParameter(PokemonPreview::class) pokemon: Pokemon) {
     )
 }
 
+
+@Composable
+private fun StatsSection(pokemon: Pokemon) {
+    SectionTitle("Base Stats", pokemon)
+    Column(
+        content = {
+            for (stat in pokemon.stats) {
+                StatsItem(pokemon, stat)
+            }
+        }
+    )
+}
+
+@Composable
+private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        content = {
+            Text(
+                text = stat.title,
+                modifier = Modifier.defaultMinSize(minWidth = 44.dp),
+                color = primaryColor(pokemon),
+                style = MaterialTheme.typography.subtitle2,
+                fontWeight = FontWeight.Bold
+            )
+            Divider(
+                color = Color.LightGray,
+                modifier = Modifier
+                    .height(19.dp)
+                    .width(1.dp)
+            )
+            Text(
+                modifier = Modifier.padding(horizontal = 8.dp),
+                text = stat.romId.toString(),
+            )
+            LinearProgressIndicator(
+                color = primaryColor(pokemon),
+                backgroundColor = Color.LightGray,
+                progress = stat.percentage.toFloat(),
+            )
+        }
+    )
+}
+
 @Composable
 private fun primaryColor(pokemon: Pokemon): Color {
     return when (pokemon.specie) {
@@ -133,15 +179,20 @@ private fun primaryColor(pokemon: Pokemon): Color {
 }
 
 @Composable
-private fun AboutSection(pokemon: Pokemon) {
+private fun SectionTitle(title: String, pokemon: Pokemon) {
     Text(
-        text = "About",
+        modifier = Modifier.padding(vertical = 16.dp),
+        text = title,
         style = MaterialTheme.typography.subtitle1,
         fontWeight = FontWeight.Bold,
         color = primaryColor(pokemon)
     )
+}
+
+@Composable
+private fun AboutSection(pokemon: Pokemon) {
+    SectionTitle("About", pokemon)
     Row(
-        modifier = Modifier.padding(vertical = 16.dp),
         content = {
             AboutProperty(
                 drawable = R.drawable.ic_balance,
@@ -160,6 +211,7 @@ private fun AboutSection(pokemon: Pokemon) {
         }
     )
     Text(
+        modifier = Modifier.padding(top = 16.dp),
         text = pokemon.description,
         style = MaterialTheme.typography.caption
     )
@@ -234,7 +286,6 @@ private fun Specie(pokemon: Pokemon) {
         }
     }
     Surface(
-        modifier = Modifier.padding(vertical = 16.dp),
         color = color,
         shape = RoundedCornerShape(16.dp),
         content = {
@@ -260,7 +311,15 @@ class PokemonPreview : PreviewParameterProvider<Pokemon> {
                 specie = Specie.GRASS,
                 height = 0.7,
                 weight = 6.9,
-                totalMoves = 7
+                totalMoves = 7,
+                stats = listOf(
+                    Statistic("HP", 45, 0.2),
+                    Statistic("ATK", 49, 0.3),
+                    Statistic("DEF", 49, 0.3),
+                    Statistic("SATK", 65, 0.4),
+                    Statistic("SDEF", 65, 0.4),
+                    Statistic("SPD", 45, 0.2),
+                )
             )
         )
 }

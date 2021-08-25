@@ -14,7 +14,10 @@ data class Pokemon(
     val height: Double,
     val weight: Double,
     val totalMoves: Int,
+    val stats: List<Statistic>
 )
+
+data class Statistic(val title: String, val romId: Int, val percentage: Double)
 
 enum class Specie {
     GRASS, FIRE, ELECTRIC,
