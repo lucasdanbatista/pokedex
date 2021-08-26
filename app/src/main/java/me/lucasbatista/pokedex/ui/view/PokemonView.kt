@@ -29,7 +29,7 @@ import me.lucasbatista.pokedex.persistence.Statistic
 @ExperimentalCoilApi
 @Composable
 fun PokemonView(pokemon: Pokemon, navController: NavController, uiController: SystemUiController) {
-    uiController.setStatusBarColor(PokemonColor(pokemon).copy(0.7F))
+    uiController.setStatusBarColor(PokemonColor(pokemon))
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
