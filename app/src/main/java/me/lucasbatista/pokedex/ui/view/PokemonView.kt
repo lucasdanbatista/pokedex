@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -133,7 +134,7 @@ fun PokemonView(pokemon: Pokemon, navController: NavController, uiController: Sy
 
 @Composable
 private fun StatsSection(pokemon: Pokemon) {
-    SectionTitle("Base Stats", pokemon)
+    SectionTitle(stringResource(R.string.stats), pokemon)
     Column(
         content = {
             for (stat in pokemon.stats) {
@@ -187,22 +188,22 @@ private fun SectionTitle(title: String, pokemon: Pokemon) {
 
 @Composable
 private fun AboutSection(pokemon: Pokemon) {
-    SectionTitle("About", pokemon)
+    SectionTitle(stringResource(R.string.about), pokemon)
     Row(
         content = {
             AboutProperty(
                 drawable = R.drawable.ic_balance,
                 value = "${pokemon.weight} kg",
-                caption = "Weight"
+                caption = stringResource(R.string.weight)
             )
             AboutProperty(
                 drawable = R.drawable.ic_ruler,
                 value = "${pokemon.height} m",
-                caption = "Height"
+                caption = stringResource(R.string.height)
             )
             AboutProperty(
                 value = pokemon.totalMoves.toString(),
-                caption = "Moves"
+                caption = stringResource(R.string.moves)
             )
         }
     )
@@ -266,13 +267,13 @@ private fun AboutProperty(
 @Composable
 private fun Specie(pokemon: Pokemon) {
     val text = when (pokemon.specie) {
-        Specie.GRASS -> "GRASS"
-        Specie.FIRE -> "FIRE"
-        Specie.ELECTRIC -> "ELECTRIC"
-        Specie.WATER -> "WATER"
-        Specie.GHOST -> "GHOST"
-        Specie.PSYCHIC -> "PSYCHIC"
-    }
+        Specie.GRASS -> stringResource(R.string.specie_grass)
+        Specie.FIRE -> stringResource(R.string.specie_fire)
+        Specie.ELECTRIC -> stringResource(R.string.specie_electric)
+        Specie.WATER -> stringResource(R.string.specie_water)
+        Specie.GHOST -> stringResource(R.string.specie_ghost)
+        Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
+    }.uppercase()
     Surface(
         color = PokemonColor(pokemon),
         shape = RoundedCornerShape(16.dp),

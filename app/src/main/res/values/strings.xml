@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">Pokedex</string>
+    <string name="app_name">Pokédex</string>
+    <string name="about">About</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="moves">Moves</string>
+    <string name="stats">Base Stats</string>
+    <string name="specie_grass">grass</string>
+    <string name="specie_fire">fire</string>
+    <string name="specie_water">water</string>
+    <string name="specie_ghost">ghost</string>
+    <string name="specie_psychic">psychic</string>
+    <string name="specie_electric">electric</string>
 </resources>

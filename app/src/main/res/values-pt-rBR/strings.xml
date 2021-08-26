@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pokédex</string>
+    <string name="about">Sobre</string>
+    <string name="weight">Peso</string>
+    <string name="height">Altura</string>
+    <string name="moves">Movimentos</string>
+    <string name="stats">Estatísticas</string>
+    <string name="specie_grass">grama</string>
+    <string name="specie_fire">fogo</string>
+    <string name="specie_water">água</string>
+    <string name="specie_ghost">fantasma</string>
+    <string name="specie_psychic">psíquico</string>
+    <string name="specie_electric">elétrico</string>
+</resources>
