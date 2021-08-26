@@ -11,12 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
+import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.persistence.Pokemon
 
 @ExperimentalMaterialApi
@@ -25,13 +29,37 @@ import me.lucasbatista.pokedex.persistence.Pokemon
 @Composable
 fun PokemonListView(pokemons: List<Pokemon>, navController: NavController, uiController: SystemUiController) {
     uiController.setStatusBarColor(Color.White)
-    LazyVerticalGrid(
-        cells = GridCells.Fixed(3),
-        contentPadding = PaddingValues(16.dp)
-    ) {
-        items(pokemons.size) { index ->
-            PokemonCard(pokemons[index]) {
-                navController.navigate("/pokemons/${it.id}")
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .padding(horizontal = 20.dp, vertical = 16.dp)
+                .defaultMinSize(minHeight = 56.dp)
+                .fillMaxWidth(),
+            content = {
+                Image(
+                    painter = painterResource(R.drawable.ic_pokeball),
+                    colorFilter = ColorFilter.tint(Color.Black),
+                    contentDescription = "",
+                    modifier = Modifier.size(24.dp)
+                )
+                Text(
+                    modifier = Modifier.padding(horizontal = 8.dp),
+                    text = "Pokédex",
+                    style = MaterialTheme.typography.h5,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black,
+                )
+            }
+        )
+        LazyVerticalGrid(
+            cells = GridCells.Fixed(3),
+            contentPadding = PaddingValues(16.dp)
+        ) {
+            items(pokemons.size) { index ->
+                PokemonCard(pokemons[index]) {
+                    navController.navigate("/pokemons/${it.id}")
+                }
             }
         }
     }
