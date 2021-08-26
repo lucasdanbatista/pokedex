@@ -16,13 +16,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.persistence.Pokemon
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PokemonListView(pokemons: List<Pokemon>, navController: NavController) {
+fun PokemonListView(pokemons: List<Pokemon>, navController: NavController, uiController: SystemUiController) {
+    uiController.setStatusBarColor(Color.White)
     LazyVerticalGrid(
         cells = GridCells.Fixed(3),
         contentPadding = PaddingValues(16.dp)

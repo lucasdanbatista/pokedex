@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.persistence.Pokemon
 import me.lucasbatista.pokedex.persistence.Specie
@@ -26,7 +27,8 @@ import me.lucasbatista.pokedex.persistence.Statistic
 
 @ExperimentalCoilApi
 @Composable
-fun PokemonView(pokemon: Pokemon, navController: NavController) {
+fun PokemonView(pokemon: Pokemon, navController: NavController, uiController: SystemUiController) {
+    uiController.setStatusBarColor(PokemonColor(pokemon).copy(0.7F))
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
@@ -105,7 +107,9 @@ fun PokemonView(pokemon: Pokemon, navController: NavController) {
                 modifier = Modifier.padding(horizontal = 8.dp),
                 content = {
                     IconButton(
-                        onClick = { navController.navigateUp() },
+                        onClick = {
+                            navController.navigateUp()
+                        },
                         content = {
                             Icon(
                                 painter = painterResource(R.drawable.ic_arrow_left),
@@ -126,7 +130,6 @@ fun PokemonView(pokemon: Pokemon, navController: NavController) {
         }
     )
 }
-
 
 @Composable
 private fun StatsSection(pokemon: Pokemon) {
@@ -170,7 +173,6 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
         }
     )
 }
-
 
 @Composable
 private fun SectionTitle(title: String, pokemon: Pokemon) {
