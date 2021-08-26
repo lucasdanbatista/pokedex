@@ -4,11 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.persistence.Pokemon
-import me.lucasbatista.pokedex.persistence.Specie
+import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.entity.Specie
 
 @Composable
-fun PokemonColor(pokemon: Pokemon): Color {
+fun pokemonColor(pokemon: Pokemon): Color {
     return when (pokemon.specie) {
         Specie.GRASS -> colorResource(R.color.grass)
         Specie.FIRE -> colorResource(R.color.fire)

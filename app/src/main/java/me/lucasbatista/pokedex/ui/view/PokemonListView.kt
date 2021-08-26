@@ -22,7 +22,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.persistence.Pokemon
+import me.lucasbatista.pokedex.entity.Pokemon
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
@@ -75,7 +75,7 @@ private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -
             .defaultMinSize(minHeight = 112.dp)
             .fillMaxWidth()
             .padding(4.dp),
-        border = BorderStroke(2.dp, PokemonColor(pokemon)),
+        border = BorderStroke(2.dp, pokemonColor(pokemon)),
         elevation = 0.dp,
         onClick = { onClickListener(pokemon) },
         content = {
@@ -91,7 +91,7 @@ private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -
                                 end = 8.dp
                             ),
                         text = "#00${pokemon.id}",
-                        color = PokemonColor(pokemon),
+                        color = pokemonColor(pokemon),
                         style = MaterialTheme.typography.overline,
                         textAlign = TextAlign.End,
                     )
@@ -104,7 +104,7 @@ private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -
                     )
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
-                        color = PokemonColor(pokemon),
+                        color = pokemonColor(pokemon),
                         content = {
                             Text(
                                 modifier = Modifier

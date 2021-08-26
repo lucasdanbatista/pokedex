@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.persistence
+package me.lucasbatista.pokedex.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -16,9 +16,3 @@ data class Pokemon(
     val totalMoves: Int,
     val stats: List<Statistic>
 )
-
-data class Statistic(val title: String, val romId: Int, val percentage: Double)
-
-enum class Specie {
-    GRASS, FIRE, ELECTRIC, GHOST, WATER, PSYCHIC
-}

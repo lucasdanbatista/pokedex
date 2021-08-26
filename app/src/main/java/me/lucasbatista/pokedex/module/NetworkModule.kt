@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.di
+package me.lucasbatista.pokedex.module
 
 import dagger.Module
 import dagger.Provides
@@ -15,7 +15,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providesHttpClient(): Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.3:8080")
+        .baseUrl("http://192.168.0.3:8080") // TODO: replace local backend
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

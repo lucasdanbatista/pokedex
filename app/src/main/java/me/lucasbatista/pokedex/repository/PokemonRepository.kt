@@ -1,21 +1,15 @@
-package me.lucasbatista.pokedex.persistence
+package me.lucasbatista.pokedex.repository
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import me.lucasbatista.pokedex.entity.Pokemon
 import me.lucasbatista.pokedex.network.PokemonWebService
+import me.lucasbatista.pokedex.persistence.PokemonDao
 import javax.inject.Inject
 
 class PokemonRepository @Inject constructor(private val webService: PokemonWebService, private val dao: PokemonDao) {
-    fun findById(id: Int): Flow<Pokemon> {
-        CoroutineScope(IO).launch {
-            val pokemon = webService.findById(id)
-            save(pokemon)
-        }
-        return dao.findById(id)
-    }
-
     fun findAll(): Flow<List<Pokemon>> {
         CoroutineScope(IO).launch {
             val pokemons = webService.findAll()

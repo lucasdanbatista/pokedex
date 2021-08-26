@@ -5,12 +5,10 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
+import me.lucasbatista.pokedex.entity.Pokemon
 
 @Dao
 interface PokemonDao {
-    @Query("select * from pokemon where id = :id")
-    fun findById(id: Int): Flow<Pokemon>
-
     @Query("select * from pokemon")
     fun findAll(): Flow<List<Pokemon>>
 

@@ -3,6 +3,7 @@ package me.lucasbatista.pokedex.persistence
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import me.lucasbatista.pokedex.entity.Statistic
 
 class StatisticListConverter {
     private val type = object : TypeToken<List<Statistic>>() {}.type

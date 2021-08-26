@@ -22,20 +22,19 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.persistence.Pokemon
-import me.lucasbatista.pokedex.persistence.Specie
-import me.lucasbatista.pokedex.persistence.Statistic
+import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.entity.Statistic
 
 @ExperimentalCoilApi
 @Composable
 fun PokemonView(pokemon: Pokemon, navController: NavController, uiController: SystemUiController) {
-    uiController.setStatusBarColor(PokemonColor(pokemon))
+    uiController.setStatusBarColor(pokemonColor(pokemon))
     Box(
         modifier = Modifier.fillMaxSize(),
         content = {
             Box(
                 modifier = Modifier
-                    .background(PokemonColor(pokemon))
+                    .background(pokemonColor(pokemon))
                     .fillMaxSize(),
                 content = {
                     Column(
@@ -152,7 +151,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
             Text(
                 text = stat.title,
                 modifier = Modifier.defaultMinSize(minWidth = 44.dp),
-                color = PokemonColor(pokemon),
+                color = pokemonColor(pokemon),
                 style = MaterialTheme.typography.subtitle2,
                 fontWeight = FontWeight.Bold
             )
@@ -167,7 +166,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
                 text = stat.romId.toString(),
             )
             LinearProgressIndicator(
-                color = PokemonColor(pokemon),
+                color = pokemonColor(pokemon),
                 backgroundColor = Color.LightGray,
                 progress = stat.percentage.toFloat(),
             )
@@ -182,7 +181,7 @@ private fun SectionTitle(title: String, pokemon: Pokemon) {
         text = title,
         style = MaterialTheme.typography.subtitle1,
         fontWeight = FontWeight.Bold,
-        color = PokemonColor(pokemon)
+        color = pokemonColor(pokemon)
     )
 }
 
@@ -267,15 +266,15 @@ private fun AboutProperty(
 @Composable
 private fun Specie(pokemon: Pokemon) {
     val text = when (pokemon.specie) {
-        Specie.GRASS -> stringResource(R.string.specie_grass)
-        Specie.FIRE -> stringResource(R.string.specie_fire)
-        Specie.ELECTRIC -> stringResource(R.string.specie_electric)
-        Specie.WATER -> stringResource(R.string.specie_water)
-        Specie.GHOST -> stringResource(R.string.specie_ghost)
-        Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
+        me.lucasbatista.pokedex.entity.Specie.GRASS -> stringResource(R.string.specie_grass)
+        me.lucasbatista.pokedex.entity.Specie.FIRE -> stringResource(R.string.specie_fire)
+        me.lucasbatista.pokedex.entity.Specie.ELECTRIC -> stringResource(R.string.specie_electric)
+        me.lucasbatista.pokedex.entity.Specie.WATER -> stringResource(R.string.specie_water)
+        me.lucasbatista.pokedex.entity.Specie.GHOST -> stringResource(R.string.specie_ghost)
+        me.lucasbatista.pokedex.entity.Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
     }.uppercase()
     Surface(
-        color = PokemonColor(pokemon),
+        color = pokemonColor(pokemon),
         shape = RoundedCornerShape(16.dp),
         content = {
             Text(
