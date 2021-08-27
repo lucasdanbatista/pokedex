@@ -15,7 +15,7 @@ class NetworkModule {
     @Singleton
     @Provides
     fun providesHttpClient(): Retrofit = Retrofit.Builder()
-        .baseUrl("http://192.168.0.3:8080") // TODO: replace local backend
+        .baseUrl("https://pokeapi.lucasbatista.me")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
