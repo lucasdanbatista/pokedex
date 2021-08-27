@@ -1,8 +1,11 @@
 package me.lucasbatista.pokedex.entity
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity
 data class Pokemon(
     @PrimaryKey
@@ -15,4 +18,4 @@ data class Pokemon(
     val weight: Double,
     val totalMoves: Int,
     val stats: List<Statistic>
-)
+) : Parcelable

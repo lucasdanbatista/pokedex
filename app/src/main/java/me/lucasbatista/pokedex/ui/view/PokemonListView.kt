@@ -1,5 +1,6 @@
 package me.lucasbatista.pokedex.ui.view
 
+import android.os.Bundle
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -18,9 +19,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
+import kotlinx.coroutines.flow.Flow
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.entity.Pokemon
 
@@ -28,7 +33,7 @@ import me.lucasbatista.pokedex.entity.Pokemon
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PokemonListView(pokemons: List<Pokemon>, navController: NavController, uiController: SystemUiController) {
+fun PokemonListView(data: Flow<PagingData<Pokemon>>, navController: NavController, uiController: SystemUiController) {
     uiController.setStatusBarColor(Color.White)
     Column {
         Row(
@@ -53,16 +58,24 @@ fun PokemonListView(pokemons: List<Pokemon>, navController: NavController, uiCon
                 )
             }
         )
+        val pokemons: LazyPagingItems<Pokemon> = data.collectAsLazyPagingItems()
         LazyVerticalGrid(
             cells = GridCells.Fixed(3),
-            contentPadding = PaddingValues(16.dp)
-        ) {
-            items(pokemons.size) { index ->
-                PokemonCard(pokemons[index]) {
-                    navController.navigate("/pokemons/${it.id}")
+            contentPadding = PaddingValues(16.dp),
+            content = {
+                items(pokemons.itemCount) { index ->
+                    PokemonCard(
+                        pokemon = pokemons[index]!!,
+                        onClickListener = {
+                            navController.currentBackStackEntry!!.arguments = Bundle().apply {
+                                putParcelable("pokemon", it)
+                            }
+                            navController.navigate("/pokemon/details")
+                        }
+                    )
                 }
             }
-        }
+        )
     }
 }
 

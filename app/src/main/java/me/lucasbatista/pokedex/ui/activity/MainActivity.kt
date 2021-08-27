@@ -27,20 +27,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.pokemons.observe(this) { pokemons ->
-            setContent {
-                val uiController = rememberSystemUiController()
-                val navController = rememberAnimatedNavController()
-                AnimatedNavHost(navController, "/pokemons") {
-                    composable("/pokemons") {
-                        PokemonListView(pokemons, navController, uiController)
-                    }
-                    composable("/pokemons/{id}") {
-                        val pokemon = pokemons.first { p -> p.id == it.arguments!!.getString("id")!!.toInt() }
-                        PokemonView(pokemon, navController, uiController)
-                    }
+        viewModel.fetchData()
+        setContent {
+            val uiController = rememberSystemUiController()
+            val navController = rememberAnimatedNavController()
+            AnimatedNavHost(navController, "/pokemons") {
+                composable("/pokemons") {
+                    PokemonListView(viewModel.pokemons, navController, uiController)
+                }
+                composable("/pokemon/details") {
+                    PokemonView(navController, uiController)
                 }
             }
         }
     }
 }
+

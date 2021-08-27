@@ -1,16 +1,16 @@
 package me.lucasbatista.pokedex.persistence
 
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 import me.lucasbatista.pokedex.entity.Pokemon
 
 @Dao
 interface PokemonDao {
     @Query("select * from pokemon")
-    fun findAll(): Flow<List<Pokemon>>
+    fun findAll(): DataSource.Factory<Int, Pokemon>
 
     @Insert
     fun insert(pokemon: Pokemon)
