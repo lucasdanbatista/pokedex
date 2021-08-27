@@ -64,15 +64,17 @@ fun PokemonListView(data: Flow<PagingData<Pokemon>>, navController: NavControlle
             contentPadding = PaddingValues(16.dp),
             content = {
                 items(pokemons.itemCount) { index ->
-                    PokemonCard(
-                        pokemon = pokemons[index]!!,
-                        onClickListener = {
-                            navController.currentBackStackEntry!!.arguments = Bundle().apply {
-                                putParcelable("pokemon", it)
+                    if (pokemons.peek(index) != null) {
+                        PokemonCard(
+                            pokemon = pokemons[index]!!,
+                            onClickListener = {
+                                navController.currentBackStackEntry!!.arguments = Bundle().apply {
+                                    putParcelable("pokemon", it)
+                                }
+                                navController.navigate("/pokemon/details")
                             }
-                            navController.navigate("/pokemon/details")
-                        }
-                    )
+                        )
+                    }
                 }
             }
         )
