@@ -23,6 +23,7 @@ import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.entity.Specie
 import me.lucasbatista.pokedex.entity.Statistic
 
 @ExperimentalCoilApi
@@ -80,7 +81,7 @@ fun PokemonView(navController: NavController, uiController: SystemUiController) 
                                                 ),
                                             horizontalAlignment = Alignment.CenterHorizontally,
                                             content = {
-                                                Specie(pokemon)
+                                                SpecieLabel(pokemon)
                                                 AboutSection(pokemon)
                                                 StatsSection(pokemon)
                                             }
@@ -166,7 +167,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
             )
             Text(
                 modifier = Modifier.padding(horizontal = 8.dp),
-                text = stat.romId.toString(),
+                text = stat.percentage.times(100).toString(),
             )
             LinearProgressIndicator(
                 color = pokemonColor(pokemon),
@@ -208,11 +209,6 @@ private fun AboutSection(pokemon: Pokemon) {
                 caption = stringResource(R.string.moves)
             )
         }
-    )
-    Text(
-        modifier = Modifier.padding(top = 16.dp),
-        text = pokemon.description,
-        style = MaterialTheme.typography.caption
     )
 }
 
@@ -267,14 +263,26 @@ private fun AboutProperty(
 }
 
 @Composable
-private fun Specie(pokemon: Pokemon) {
+private fun SpecieLabel(pokemon: Pokemon) {
     val text = when (pokemon.specie) {
-        me.lucasbatista.pokedex.entity.Specie.GRASS -> stringResource(R.string.specie_grass)
-        me.lucasbatista.pokedex.entity.Specie.FIRE -> stringResource(R.string.specie_fire)
-        me.lucasbatista.pokedex.entity.Specie.ELECTRIC -> stringResource(R.string.specie_electric)
-        me.lucasbatista.pokedex.entity.Specie.WATER -> stringResource(R.string.specie_water)
-        me.lucasbatista.pokedex.entity.Specie.GHOST -> stringResource(R.string.specie_ghost)
-        me.lucasbatista.pokedex.entity.Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
+        Specie.GRASS -> stringResource(R.string.specie_grass)
+        Specie.FIRE -> stringResource(R.string.specie_fire)
+        Specie.ELECTRIC -> stringResource(R.string.specie_electric)
+        Specie.WATER -> stringResource(R.string.specie_water)
+        Specie.GHOST -> stringResource(R.string.specie_ghost)
+        Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
+        Specie.NORMAL -> stringResource(R.string.specie_normal)
+        Specie.ICE -> stringResource(R.string.specie_ice)
+        Specie.FIGHTING -> stringResource(R.string.specie_fighting)
+        Specie.POISON -> stringResource(R.string.specie_poison)
+        Specie.GROUND -> stringResource(R.string.specie_ground)
+        Specie.FLYING -> stringResource(R.string.specie_flying)
+        Specie.BUG -> stringResource(R.string.specie_bug)
+        Specie.ROCK -> stringResource(R.string.specie_rock)
+        Specie.DARK -> stringResource(R.string.specie_dark)
+        Specie.DRAGON -> stringResource(R.string.specie_dragon)
+        Specie.STEEL -> stringResource(R.string.specie_steel)
+        Specie.FAIRY -> stringResource(R.string.specie_fairy)
     }.uppercase()
     Surface(
         color = pokemonColor(pokemon),

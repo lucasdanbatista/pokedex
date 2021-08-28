@@ -11,7 +11,6 @@ data class Pokemon(
     @PrimaryKey
     val id: Int,
     val name: String,
-    val description: String,
     val avatar: String,
     val specie: Specie,
     val height: Double,

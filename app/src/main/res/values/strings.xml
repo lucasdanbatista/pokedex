@@ -11,4 +11,16 @@
     <string name="specie_ghost">ghost</string>
     <string name="specie_psychic">psychic</string>
     <string name="specie_electric">electric</string>
+    <string name="specie_normal">normal</string>
+    <string name="specie_ice">ice</string>
+    <string name="specie_fighting">fighting</string>
+    <string name="specie_poison">poison</string>
+    <string name="specie_ground">ground</string>
+    <string name="specie_flying">flying</string>
+    <string name="specie_bug">bug</string>
+    <string name="specie_rock">rock</string>
+    <string name="specie_dark">dark</string>
+    <string name="specie_dragon">dragon</string>
+    <string name="specie_steel">steel</string>
+    <string name="specie_fairy">fairy</string>
 </resources>

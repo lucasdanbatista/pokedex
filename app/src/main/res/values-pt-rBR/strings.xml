@@ -12,4 +12,16 @@
     <string name="specie_ghost">fantasma</string>
     <string name="specie_psychic">psíquico</string>
     <string name="specie_electric">elétrico</string>
+    <string name="specie_normal">normal</string>
+    <string name="specie_ice">gelo</string>
+    <string name="specie_fighting">lutador</string>
+    <string name="specie_poison">venenoso</string>
+    <string name="specie_ground">terrestre</string>
+    <string name="specie_flying">voador</string>
+    <string name="specie_bug">inseto</string>
+    <string name="specie_rock">pedro</string>
+    <string name="specie_dark">trevas</string>
+    <string name="specie_dragon">dragão</string>
+    <string name="specie_steel">aço</string>
+    <string name="specie_fairy">fada</string>
 </resources>

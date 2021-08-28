@@ -16,5 +16,17 @@ fun pokemonColor(pokemon: Pokemon): Color {
         Specie.WATER -> colorResource(R.color.water)
         Specie.GHOST -> colorResource(R.color.ghost)
         Specie.PSYCHIC -> colorResource(R.color.psychic)
+        Specie.NORMAL -> colorResource(R.color.normal)
+        Specie.ICE -> colorResource(R.color.ice)
+        Specie.FIGHTING -> colorResource(R.color.fighting)
+        Specie.POISON -> colorResource(R.color.poison)
+        Specie.GROUND -> colorResource(R.color.ground)
+        Specie.FLYING -> colorResource(R.color.flying)
+        Specie.BUG -> colorResource(R.color.bug)
+        Specie.ROCK -> colorResource(R.color.rock)
+        Specie.DARK -> colorResource(R.color.dark)
+        Specie.DRAGON -> colorResource(R.color.dragon)
+        Specie.STEEL -> colorResource(R.color.steel)
+        Specie.FAIRY -> colorResource(R.color.fairy)
     }
 }

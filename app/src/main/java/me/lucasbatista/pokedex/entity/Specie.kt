@@ -6,5 +6,17 @@ enum class Specie {
     ELECTRIC,
     GHOST,
     WATER,
-    PSYCHIC
+    PSYCHIC,
+    NORMAL,
+    ICE,
+    FIGHTING,
+    POISON,
+    GROUND,
+    FLYING,
+    BUG,
+    ROCK,
+    DARK,
+    DRAGON,
+    STEEL,
+    FAIRY
 }
