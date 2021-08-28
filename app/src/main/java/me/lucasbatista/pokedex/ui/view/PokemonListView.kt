@@ -19,13 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
-import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
-import kotlinx.coroutines.flow.Flow
 import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.entity.Pokemon
 
@@ -33,7 +30,11 @@ import me.lucasbatista.pokedex.entity.Pokemon
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PokemonListView(data: Flow<PagingData<Pokemon>>, navController: NavController, uiController: SystemUiController) {
+fun PokemonListView(
+    pokemons: LazyPagingItems<Pokemon>,
+    navController: NavController,
+    uiController: SystemUiController
+) {
     uiController.setStatusBarColor(Color.White)
     Column {
         Row(
@@ -58,7 +59,6 @@ fun PokemonListView(data: Flow<PagingData<Pokemon>>, navController: NavControlle
                 )
             }
         )
-        val pokemons: LazyPagingItems<Pokemon> = data.collectAsLazyPagingItems()
         LazyVerticalGrid(
             cells = GridCells.Fixed(3),
             contentPadding = PaddingValues(16.dp),

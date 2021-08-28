@@ -3,23 +3,31 @@ package me.lucasbatista.pokedex.ui.view_model
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import me.lucasbatista.pokedex.network.PokemonWebService
-import me.lucasbatista.pokedex.persistence.PokemonDao
+import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.repository.PokemonRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class PokemonsViewModel @Inject constructor(private val webService: PokemonWebService, private val dao: PokemonDao) :
+class PokemonsViewModel @Inject constructor(repository: PokemonRepository) :
     ViewModel() {
     val pokemons = Pager(
-        config = PagingConfig(12),
-        pagingSourceFactory = dao.findAll().asPagingSourceFactory()
+        config = PagingConfig(100),
+        pagingSourceFactory = { PokemonPagingSource(repository) }
     ).flow
+}
 
-    fun fetchData() = CoroutineScope(Dispatchers.IO).launch {
-        webService.findAll().forEach { if (dao.exists(it.id)) dao.update(it) else dao.insert(it) }
+class PokemonPagingSource constructor(private val repository: PokemonRepository) : PagingSource<Int, Pokemon>() {
+    override fun getRefreshKey(state: PagingState<Int, Pokemon>) = state.anchorPosition
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Pokemon> {
+        val pagedResult = repository.fetch(params.key)
+        return LoadResult.Page(
+            data = pagedResult.items,
+            prevKey = pagedResult.previous,
+            nextKey = pagedResult.next
+        )
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -27,13 +28,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.fetchData()
         setContent {
+            val pokemons = viewModel.pokemons.collectAsLazyPagingItems()
             val uiController = rememberSystemUiController()
             val navController = rememberAnimatedNavController()
             AnimatedNavHost(navController, "/pokemons") {
                 composable("/pokemons") {
-                    PokemonListView(viewModel.pokemons, navController, uiController)
+                    PokemonListView(pokemons, navController, uiController)
                 }
                 composable("/pokemon/details") {
                     PokemonView(navController, uiController)
