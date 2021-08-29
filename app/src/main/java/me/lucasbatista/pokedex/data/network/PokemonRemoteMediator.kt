@@ -22,17 +22,32 @@ class PokemonRemoteMediator constructor(private val webService: PokemonWebServic
 
     private suspend fun canLoadNext(state: PagingState<Int, Pokemon>): Boolean {
         return if (state.isEmpty()) {
-            fetch(1).next != null
+            fetch(1)?.next != null
         } else {
-            val page = webService.findById(state.lastItemOrNull()!!.id)
-            if (page.next != null) fetch(page.next).next != null
+            val page = findPage(state)
+            if (page?.next != null) fetch(page.next)?.next != null
             else false
         }
     }
 
-    private suspend fun fetch(page: Int?): Page<Pokemon> {
-        val data = webService.findByPage(page)
-        data.items.forEach { if (dao.exists(it.id)) dao.update(it) else dao.insert(it) }
-        return data
+    private suspend fun findPage(state: PagingState<Int, Pokemon>): Page<Pokemon>? {
+        return try {
+            val response = webService.findById(state.lastItemOrNull()!!.id)
+            return if (response.isSuccessful) return response.body()!! else null
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private suspend fun fetch(page: Int?): Page<Pokemon>? {
+        return try {
+            val response = webService.findByPage(page)
+            return if (response.isSuccessful) {
+                response.body()!!.items.forEach { if (dao.exists(it.id)) dao.update(it) else dao.insert(it) }
+                response.body()!!
+            } else null
+        } catch (e: Exception) {
+            null
+        }
     }
 }
