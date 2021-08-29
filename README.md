@@ -35,6 +35,8 @@ UI adapted with ❤ from [Ricardo Schiniegoski's prototype](https://www.figma.co
 
 ✔ Endless scrolling
 
+✔ Translations
+
 ❌ Search
 
 ❌ Tests
