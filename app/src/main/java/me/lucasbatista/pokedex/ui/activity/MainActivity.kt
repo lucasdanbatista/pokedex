@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.compose.collectAsLazyPagingItems
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -18,6 +19,7 @@ import me.lucasbatista.pokedex.ui.view.PokemonListView
 import me.lucasbatista.pokedex.ui.view.PokemonView
 import me.lucasbatista.pokedex.ui.view_model.PokemonsViewModel
 
+@ExperimentalPagingApi
 @ExperimentalCoilApi
 @ExperimentalAnimationApi
 @ExperimentalMaterialApi

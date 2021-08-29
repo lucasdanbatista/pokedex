@@ -1,6 +1,6 @@
 package me.lucasbatista.pokedex.data.cache
 
-import androidx.paging.DataSource
+import androidx.paging.PagingSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -10,7 +10,7 @@ import me.lucasbatista.pokedex.data.entity.Pokemon
 @Dao
 interface PokemonDao {
     @Query("select * from pokemon")
-    fun findAll(): DataSource.Factory<Int, Pokemon>
+    fun findAll(): PagingSource<Int, Pokemon>
 
     @Insert
     fun insert(pokemon: Pokemon)
