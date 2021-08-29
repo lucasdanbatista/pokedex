@@ -177,7 +177,7 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
             LinearProgressIndicator(
                 color = pokemonColor(pokemon),
                 backgroundColor = Color.LightGray,
-                progress = stat.percentage.toFloat(),
+                progress = if (stat.percentage > 1F) 1F else stat.percentage.toFloat(),
             )
         }
     )
