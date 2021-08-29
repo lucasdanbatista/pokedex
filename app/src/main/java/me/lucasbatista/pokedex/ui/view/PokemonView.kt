@@ -22,9 +22,9 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.entity.Pokemon
-import me.lucasbatista.pokedex.entity.Specie
-import me.lucasbatista.pokedex.entity.Statistic
+import me.lucasbatista.pokedex.data.entity.Pokemon
+import me.lucasbatista.pokedex.data.entity.Statistic
+import me.lucasbatista.pokedex.data.entity.Type
 
 @ExperimentalCoilApi
 @Composable
@@ -264,25 +264,25 @@ private fun AboutProperty(
 
 @Composable
 private fun SpecieLabel(pokemon: Pokemon) {
-    val text = when (pokemon.specie) {
-        Specie.GRASS -> stringResource(R.string.specie_grass)
-        Specie.FIRE -> stringResource(R.string.specie_fire)
-        Specie.ELECTRIC -> stringResource(R.string.specie_electric)
-        Specie.WATER -> stringResource(R.string.specie_water)
-        Specie.GHOST -> stringResource(R.string.specie_ghost)
-        Specie.PSYCHIC -> stringResource(R.string.specie_psychic)
-        Specie.NORMAL -> stringResource(R.string.specie_normal)
-        Specie.ICE -> stringResource(R.string.specie_ice)
-        Specie.FIGHTING -> stringResource(R.string.specie_fighting)
-        Specie.POISON -> stringResource(R.string.specie_poison)
-        Specie.GROUND -> stringResource(R.string.specie_ground)
-        Specie.FLYING -> stringResource(R.string.specie_flying)
-        Specie.BUG -> stringResource(R.string.specie_bug)
-        Specie.ROCK -> stringResource(R.string.specie_rock)
-        Specie.DARK -> stringResource(R.string.specie_dark)
-        Specie.DRAGON -> stringResource(R.string.specie_dragon)
-        Specie.STEEL -> stringResource(R.string.specie_steel)
-        Specie.FAIRY -> stringResource(R.string.specie_fairy)
+    val text = when (pokemon.type) {
+        Type.GRASS -> stringResource(R.string.type_grass)
+        Type.FIRE -> stringResource(R.string.type_fire)
+        Type.ELECTRIC -> stringResource(R.string.type_electric)
+        Type.WATER -> stringResource(R.string.type_water)
+        Type.GHOST -> stringResource(R.string.type_ghost)
+        Type.PSYCHIC -> stringResource(R.string.type_psychic)
+        Type.NORMAL -> stringResource(R.string.type_normal)
+        Type.ICE -> stringResource(R.string.type_ice)
+        Type.FIGHTING -> stringResource(R.string.type_fighting)
+        Type.POISON -> stringResource(R.string.type_poison)
+        Type.GROUND -> stringResource(R.string.type_ground)
+        Type.FLYING -> stringResource(R.string.type_flying)
+        Type.BUG -> stringResource(R.string.type_bug)
+        Type.ROCK -> stringResource(R.string.type_rock)
+        Type.DARK -> stringResource(R.string.type_dark)
+        Type.DRAGON -> stringResource(R.string.type_dragon)
+        Type.STEEL -> stringResource(R.string.type_steel)
+        Type.FAIRY -> stringResource(R.string.type_fairy)
     }.uppercase()
     Surface(
         color = pokemonColor(pokemon),

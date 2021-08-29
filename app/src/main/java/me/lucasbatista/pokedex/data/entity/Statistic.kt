@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.entity
+package me.lucasbatista.pokedex.data.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

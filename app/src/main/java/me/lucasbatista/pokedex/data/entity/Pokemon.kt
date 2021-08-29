@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.entity
+package me.lucasbatista.pokedex.data.entity
 
 import android.os.Parcelable
 import androidx.room.Entity
@@ -12,7 +12,7 @@ data class Pokemon(
     val id: Int,
     val name: String,
     val avatar: String,
-    val specie: Specie,
+    val type: Type,
     val height: Double,
     val weight: Double,
     val totalMoves: Int,

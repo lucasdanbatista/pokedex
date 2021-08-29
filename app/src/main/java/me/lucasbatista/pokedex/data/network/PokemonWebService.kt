@@ -1,6 +1,6 @@
-package me.lucasbatista.pokedex.network
+package me.lucasbatista.pokedex.data.network
 
-import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.data.entity.Pokemon
 import retrofit2.http.GET
 import retrofit2.http.Query
 

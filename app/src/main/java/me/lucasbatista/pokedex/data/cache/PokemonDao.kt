@@ -1,11 +1,11 @@
-package me.lucasbatista.pokedex.persistence
+package me.lucasbatista.pokedex.data.cache
 
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.data.entity.Pokemon
 
 @Dao
 interface PokemonDao {

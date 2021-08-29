@@ -1,4 +1,4 @@
-package me.lucasbatista.pokedex.module
+package me.lucasbatista.pokedex.di
 
 import android.app.Application
 import androidx.room.Room
@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import me.lucasbatista.pokedex.persistence.PokedexDatabase
-import me.lucasbatista.pokedex.persistence.PokemonDao
+import me.lucasbatista.pokedex.data.cache.PokedexDatabase
+import me.lucasbatista.pokedex.data.cache.PokemonDao
 import javax.inject.Singleton
 
 @Module

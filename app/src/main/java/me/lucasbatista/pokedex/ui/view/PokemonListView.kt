@@ -24,7 +24,7 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.SystemUiController
 import me.lucasbatista.pokedex.R
-import me.lucasbatista.pokedex.entity.Pokemon
+import me.lucasbatista.pokedex.data.entity.Pokemon
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi

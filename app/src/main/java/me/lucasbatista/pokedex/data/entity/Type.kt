@@ -1,6 +1,6 @@
-package me.lucasbatista.pokedex.entity
+package me.lucasbatista.pokedex.data.entity
 
-enum class Specie {
+enum class Type {
     GRASS,
     FIRE,
     ELECTRIC,
