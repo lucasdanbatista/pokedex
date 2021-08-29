@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
@@ -25,6 +26,7 @@ import me.lucasbatista.pokedex.R
 import me.lucasbatista.pokedex.data.entity.Pokemon
 import me.lucasbatista.pokedex.data.entity.Statistic
 import me.lucasbatista.pokedex.data.entity.Type
+import kotlin.math.roundToInt
 
 @ExperimentalCoilApi
 @Composable
@@ -166,8 +168,11 @@ private fun StatsItem(pokemon: Pokemon, stat: Statistic) {
                     .width(1.dp)
             )
             Text(
-                modifier = Modifier.padding(horizontal = 8.dp),
-                text = stat.percentage.times(100).toString(),
+                modifier = Modifier
+                    .padding(horizontal = 8.dp)
+                    .defaultMinSize(minWidth = 24.dp),
+                text = stat.percentage.times(100).roundToInt().toString(),
+                textAlign = TextAlign.End
             )
             LinearProgressIndicator(
                 color = pokemonColor(pokemon),
