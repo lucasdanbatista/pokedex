@@ -41,7 +41,10 @@ fun PokemonListView(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(horizontal = 20.dp, vertical = 16.dp)
+                .padding(
+                    start = 24.dp,
+                    end = 16.dp
+                )
                 .defaultMinSize(minHeight = 56.dp)
                 .fillMaxWidth(),
             content = {
@@ -60,6 +63,7 @@ fun PokemonListView(
                 )
             }
         )
+        Divider()
         LazyVerticalGrid(
             cells = GridCells.Fixed(3),
             contentPadding = PaddingValues(16.dp),
