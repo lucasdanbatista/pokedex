@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.paging.compose.LazyPagingItems
@@ -105,7 +106,11 @@ private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -
                                 top = 8.dp,
                                 end = 8.dp
                             ),
-                        text = "#00${pokemon.id}",
+                        text = when {
+                            pokemon.id < 10 -> "#00${pokemon.id}"
+                            pokemon.id < 100 -> "#0${pokemon.id}"
+                            else -> "#${pokemon.id}"
+                        },
                         color = pokemonColor(pokemon),
                         style = MaterialTheme.typography.overline,
                         textAlign = TextAlign.End,
@@ -126,6 +131,8 @@ private fun PokemonCard(pokemon: Pokemon, onClickListener: ((pokemon: Pokemon) -
                                     .fillMaxWidth()
                                     .padding(8.dp),
                                 text = pokemon.name,
+                                overflow = TextOverflow.Ellipsis,
+                                maxLines = 1,
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.caption,
                                 color = Color.White,
